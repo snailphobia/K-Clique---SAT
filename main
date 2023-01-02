@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# this script is used to run the main.js file using node
+./checkutils.sh > utils.log
+node ./main.js 2> run.log
