@@ -51,13 +51,14 @@ read().then(() => {
 	V.forEach((item) => {
 		let aux = nV - 1 - item.length;
 		if (aux < 0) aux = 0; // betrayal by your most prized friend
-		total_clauses += K * (K - 1) / 2 * aux;
+		total_clauses += K * (K - 1) * aux;
 	});
-	total_clauses /= 2; total_clauses += nV + K; // it just works!
+	total_clauses /= 2; total_clauses += nV + K * nV * (nV - 1) / 2 + nV * K * (K - 1) / 2; // it just works!
 
 	rl.output.write(`p cnf ${nV * K} ${total_clauses}\n`);
 
 	const idx = (i, j) => { return (i - 1) * nV + j; };
+
 
 	for (let i = 1; i <= K; i++) {
 		for (let j = 1; j <= nV; j++) {
@@ -66,18 +67,26 @@ read().then(() => {
 		rl.output.write('0\n');
 	}
 
-	for (let j = 1; j <= nV; j++) {
-		for (let i = 1; i <= K; i++) {
-			rl.output.write(`${idx(i, j)} `);
+	for (let i = 1; i <= K; i++) {
+		for (let j = 1; j <= nV; j++) {
+			for (let tmp = j + 1; tmp <= nV; tmp++)
+				rl.output.write(`-${idx(i, j)} -${idx(i, tmp)} 0\n`);
 		}
-		rl.output.write('0\n');
+	}
+
+	for (let i = 1; i <= nV; i++) {
+		for (let j = 1; j <= K; j++) {
+			for (let tmp = j + 1; tmp <= K; tmp++)
+				rl.output.write(`-${idx(j, i)} -${idx(tmp, i)} 0\n`);
+		}
 	}
 
 	for (let v = 1; v <= nV; v++) {
 		for (let u = v + 1; u <= nV; u++) {
 			if (!V[v - 1].includes(u)) {
 				for (let i = 1; i <= K; i++) {
-					for (let j = i + 1; j <= K; j++) {
+					for (let j = 1; j <= K; j++) {
+						if (i !== j)
 							rl.output.write(`-${idx(i, v)} -${idx(j, u)} 0\n`);
 					}
 				}

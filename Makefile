@@ -3,7 +3,7 @@ build:
 	@chmod +x ./main.js
 	@chmod +x ./main
 	@npm install > /dev/null 2>&1
-
+	@g++ -Wall -Wno-unused-variable -O2 main.cpp -o exec
 run: main.js
 	@./main
 

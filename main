@@ -1,5 +1,8 @@
 #!/bin/bash
 
 # this script is used to run the main.js file using node
-./checkutils.sh > utils.log
-node ./main.js 2> run.log
+# ./checkutils.sh > utils.log
+# node ./main.js < $1 > $2 2> run.log
+
+# this script is used to run the executable of the main.cpp file
+./exec < $1 > $2 2> run.log
