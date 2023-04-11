@@ -1,0 +1,5 @@
+#define VERSION "1.0.3"
+#define COMPILER "gcc (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609 -W -Wall -O3 -DNEMBEDDED -DNDEBUG -DNMETRICS -DNSTATISTICS"
+#define ID "79d8d8f20465e71fd2b0f193b468898cd803a59a"
+#define BUILD "Sat May 14 21:06:56 CST 2022 Linux dell-PowerEdge-T630 4.15.0-136-generic x86_64"
+#define DIR "/home/zhengjz/SAT/kissat-hywalk-final/build"
